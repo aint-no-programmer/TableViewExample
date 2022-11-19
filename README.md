@@ -1,8 +1,9 @@
 ### TableViewExample
 QML cross platform gui based on the **QAbstractTableModel**, with charts example and the ability to export the table to pdf file.
-Application imitate sme hard work in the separte thread
+Application imitate some hard work of color prefiction process in the separte thread by choosen file or folder.
 ### How to use it
-
+Double click to line with file will view charts.
+Export table in menu will export table in pdf file.
 ### Build
 For build need Qt5 installed
 ### Screenshots
