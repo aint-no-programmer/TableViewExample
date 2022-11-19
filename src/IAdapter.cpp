@@ -17,6 +17,8 @@ void IAdapter::createPDFThreadSafe()
     QString reportName = QFileDialog::getSaveFileName();
     if (reportName.isEmpty()) return;
 
+    if (!reportName.endsWith(QString(".pdf"))) reportName.append(QString(".pdf"));
+
     if (thread() == QThread::currentThread())
     {
         createPDF(reportName);
