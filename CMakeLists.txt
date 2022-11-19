@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(QMLTableView LANGUAGES CXX)
+project(TableViewExample LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
