@@ -1,4 +1,5 @@
 #include "IAdapter.h"
+#include <QFileDialog>
 
 IAdapter::IAdapter(DataModel *dataModel, QMLAdapter* qmlAdapter, QObject *parent)
     : QObject(parent),
@@ -11,16 +12,18 @@ IAdapter::IAdapter(DataModel *dataModel, QMLAdapter* qmlAdapter, QObject *parent
     connect(this, &IAdapter::chooseMeControlEnabling, _qmlAdapter, &QMLAdapter::onChooseMeControlEnabling, Qt::DirectConnection);
 }
 
-void IAdapter::createPDFThreadSafe(const QString &fileName)
+void IAdapter::createPDFThreadSafe()
 {
+    QString reportName = QFileDialog::getSaveFileName();
+
     if (thread() == QThread::currentThread())
     {
-        createPDF(fileName);
+        createPDF(reportName);
     }
     else
     {
         QMetaObject::invokeMethod(this, "createPDF", Qt::QueuedConnection,
-                                  Q_ARG(QString, fileName));
+                                  Q_ARG(QString, reportName));
     }
 }
 
@@ -115,6 +118,7 @@ void IAdapter::createPDF(const QString &fileName)
     //Printer
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
+//    printer.setOutputFileName(fileName);
     printer.setOutputFileName(fileName);
     document.print(&printer);
 }

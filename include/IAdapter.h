@@ -22,7 +22,7 @@ class IAdapter : public QObject
     Q_OBJECT
 public:
     IAdapter(DataModel* dataModel, QMLAdapter *qmlAdapter, QObject* parent = nullptr);
-    Q_INVOKABLE void createPDFThreadSafe(const QString& fileName);
+    Q_INVOKABLE void createPDFThreadSafe();
     Q_INVOKABLE void processColorIDFolderThreadSafe(const QString& folderName);
     Q_INVOKABLE void processColorIDThreadSafe(const QString& fileName);
 signals:

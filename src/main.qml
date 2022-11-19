@@ -39,7 +39,7 @@ ApplicationWindow {
         }
         Menu {
             title: qsTr("&Report")
-            Action { text: qsTr("Export &table"); onTriggered: adapter.createPDFThreadSafe("Report.pdf") }
+            Action { text: qsTr("Export &table"); onTriggered: adapter.createPDFThreadSafe() }
             Action { text: qsTr("Export chart"); enabled: false; }
             Action { text: qsTr("Ex&port image"); enabled: false; }
         }
