@@ -15,6 +15,7 @@ IAdapter::IAdapter(DataModel *dataModel, QMLAdapter* qmlAdapter, QObject *parent
 void IAdapter::createPDFThreadSafe()
 {
     QString reportName = QFileDialog::getSaveFileName();
+    if (reportName.isEmpty()) return;
 
     if (thread() == QThread::currentThread())
     {
