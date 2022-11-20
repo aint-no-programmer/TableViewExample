@@ -23,11 +23,31 @@ void QMLAdapter::setChooseMeControlEnabled(const bool &chooseMeControlEnabled)
 
 QString QMLAdapter::folderName(){return _folderName;}
 
-void QMLAdapter::setFolderName(const QString &urlFolderName){auto folderName = QUrl(urlFolderName).path(); if (_folderName == folderName) return; _folderName = folderName; _settings->setValue("folderName", _folderName); emit folderNameChanged(_folderName);}
+void QMLAdapter::setFolderName(const QString &urlFolderName)
+{
+	auto folderName = QUrl(urlFolderName).path();
+#ifdef WINDOWS    
+    folderName.remove(0, 1);
+#endif
+	if (_folderName == folderName) return;
+	_folderName = folderName;
+	_settings->setValue("folderName", _folderName);
+	emit folderNameChanged(_folderName);
+}
 
 QString QMLAdapter::fileName(){return _fileName;}
 
-void QMLAdapter::setFileName(const QString &urlFileName){auto fileName = QUrl(urlFileName).path(); if (_fileName == fileName) return; _fileName = fileName; _settings->setValue("fileName", _fileName); emit fileNameChanged(_fileName);}
+void QMLAdapter::setFileName(const QString &urlFileName)
+{
+	auto fileName = QUrl(urlFileName).path();
+#ifdef WINDOWS    
+    fileName.remove(0, 1);
+#endif
+	if (_fileName == fileName) return;
+	_fileName = fileName;
+	_settings->setValue("fileName", _fileName);
+	emit fileNameChanged(_fileName);
+}
 
 void QMLAdapter::loadSettings()
 {
