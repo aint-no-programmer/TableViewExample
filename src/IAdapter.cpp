@@ -32,36 +32,28 @@ void IAdapter::createPDFThreadSafe()
 
 void IAdapter::processColorIDFolderThreadSafe(const QString &folderName)
 {
-    QString fileName_cutted(folderName);
-#ifdef WINDOWS
-    fileName_cutted.remove(0, 1);
-#endif
     if (thread() == QThread::currentThread())
     {
-        processColorIDFolder(fileName_cutted);
+        processColorIDFolder(folderName);
     }
     else
     {
         QMetaObject::invokeMethod(this, "processColorIDFolder", Qt::QueuedConnection,
-                                  Q_ARG(QString, fileName_cutted));
+                                  Q_ARG(QString, folderName));
     }
 }
 
 void IAdapter::processColorIDThreadSafe(const QString &fileName)
 {
-    QString fileName_cutted(fileName);
-#ifdef WINDOWS    
-    fileName_cutted.remove(0, 1);
-#endif
     if (thread() == QThread::currentThread())
     {
 
-        processColorID(fileName_cutted);
+        processColorID(fileName);
     }
     else
     {
         QMetaObject::invokeMethod(this, "processColorID", Qt::QueuedConnection,
-                                  Q_ARG(QString, fileName_cutted));
+                                  Q_ARG(QString, fileName));
     }
 }
 
